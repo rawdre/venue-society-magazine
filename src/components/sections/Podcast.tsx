@@ -1,6 +1,10 @@
+"use client";
+
 import { Reveal } from "@/components/Reveal";
+import { useUI } from "@/i18n/ui";
 
 export function Podcast() {
+  const ui = useUI();
   return (
     <section className="relative bg-cream py-20 lg:py-24">
       <div className="mx-auto max-w-5xl px-6 lg:px-10">
@@ -18,17 +22,13 @@ export function Podcast() {
           </Reveal>
           <Reveal delay={0.1}>
             <div>
-              <p className="eyebrow">In Conversation</p>
+              <p className="eyebrow">{ui.podcast.eyebrow}</p>
               <h2 className="font-display mt-4 text-[clamp(2rem,3.8vw,3rem)] font-light leading-[1.05] text-ink">
-                The Venue Society Podcast
+                {ui.podcast.title}
               </h2>
-              <p className="mt-4 max-w-xl text-ink-soft">
-                Candid conversations on events, design, and the art of bringing
-                people together — with the planners, owners and makers behind New
-                England&rsquo;s best celebrations. Never a sales pitch.
-              </p>
+              <p className="mt-4 max-w-xl text-ink-soft">{ui.podcast.body}</p>
               <p className="mt-6 text-xs uppercase tracking-[0.28em] text-gold">
-                Coming with the first issue
+                {ui.podcast.coming}
               </p>
             </div>
           </Reveal>

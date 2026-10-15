@@ -4,17 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
-
-const LINKS = [
-  { label: "The Magazine", href: "/#concept" },
-  { label: "Featured Venues", href: "/#venues" },
-  { label: "Advertise", href: "/#vendors" },
-  { label: "The Launch", href: "/#launch" },
-];
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useUI } from "@/i18n/ui";
 
 export function Nav() {
+  const ui = useUI();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { label: ui.nav.magazine, href: "/#concept" },
+    { label: ui.nav.venues, href: "/#venues" },
+    { label: ui.nav.advertise, href: "/#vendors" },
+    { label: ui.nav.launch, href: "/#launch" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -41,8 +44,9 @@ export function Nav() {
           <Logo />
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
-          {LINKS.map((l) => (
+        {/* desktop (lg and up) */}
+        <ul className="hidden items-center gap-10 lg:flex">
+          {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
@@ -54,18 +58,23 @@ export function Nav() {
           ))}
         </ul>
 
-        <Link
-          href="/#feature-your-venue"
-          className="hidden rounded-[2px] bg-ink px-6 py-3 text-[0.68rem] font-medium uppercase tracking-[0.24em] text-ivory transition-all duration-300 hover:bg-espresso hover:-translate-y-0.5 md:inline-flex"
-        >
-          Get Featured
-        </Link>
+        <div className="hidden items-center gap-5 lg:flex">
+          <LanguageSwitcher tone="dark" />
+          <Link
+            href="/#feature-your-venue"
+            className="inline-flex rounded-[2px] bg-ink px-6 py-3 text-[0.68rem] font-medium uppercase tracking-[0.24em] text-ivory transition-all duration-300 hover:bg-espresso hover:-translate-y-0.5"
+          >
+            {ui.nav.getFeatured}
+          </Link>
+        </div>
 
+        {/* mobile + tablet trigger (below lg) */}
         <button
           type="button"
           aria-label="Toggle menu"
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
           <span
             className={cn(
@@ -83,15 +92,15 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* mobile drawer */}
+      {/* mobile + tablet drawer */}
       <div
         className={cn(
-          "overflow-hidden border-t border-line bg-ivory/95 backdrop-blur-md transition-all duration-500 md:hidden",
-          open ? "max-h-96" : "max-h-0 border-t-0"
+          "overflow-hidden border-t border-line bg-ivory/95 backdrop-blur-md transition-all duration-500 lg:hidden",
+          open ? "max-h-[32rem]" : "max-h-0 border-t-0"
         )}
       >
         <ul className="flex flex-col gap-1 px-6 py-4">
-          {LINKS.map((l) => (
+          {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
@@ -102,13 +111,14 @@ export function Nav() {
               </Link>
             </li>
           ))}
-          <li className="pt-2">
+          <li className="flex items-center justify-between gap-4 border-t border-line pt-4">
+            <LanguageSwitcher tone="dark" />
             <Link
               href="/#feature-your-venue"
               onClick={() => setOpen(false)}
               className="inline-flex rounded-[2px] bg-ink px-6 py-3 text-[0.68rem] uppercase tracking-[0.24em] text-ivory"
             >
-              Get Featured
+              {ui.nav.getFeatured}
             </Link>
           </li>
         </ul>

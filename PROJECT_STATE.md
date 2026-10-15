@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.2.0_
+_Last updated: 2026-10-15 · v0.3.0_
 
 ## What this is
 
@@ -45,6 +45,15 @@ prev/next nav. **Contact / lead form** (`#contact`) with 3 intents (feature /
 advertise / RSVP) → `POST /api/contact` (stub). Venue cards link to features.
 Nav anchors made root-relative so they work on subpages. Production build clean
 (17 routes). Verified rendering (desktop).
+
+**v0.3.0** — **Trilingual EN / PT / ES** (`src/i18n/`): client `LanguageProvider`
+(localStorage + browser auto-detect), full `ui.ts` dictionary + per-venue
+`venueCopy.ts` (PT/ES translations), `useUI()` / `localizeVenue()` /
+`localizeMonth()`. **Flag switcher** (`LanguageSwitcher` + `Flag.tsx` — inline
+SVG flags, not emoji, so they render on Windows). **Hamburger now covers mobile
++ tablet** (breakpoint moved `md`→`lg`). Subtle **Comeketo Catering** block in
+the footer with André's contact ((978) 381-1212 / tech@comeketocatering.com /
+comeketocatering.com). All sections + feature pages localized. Build clean.
 
 ## Next (not yet done)
 

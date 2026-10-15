@@ -1,13 +1,16 @@
+"use client";
+
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
+import { useUI } from "@/i18n/ui";
 
 export function Hero() {
+  const ui = useUI();
   return (
     <section
       id="top"
       className="grain relative overflow-hidden bg-ivory pt-36 pb-20 lg:pt-44 lg:pb-28"
     >
-      {/* faint radial warmth */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -17,10 +20,9 @@ export function Hero() {
       />
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-12 lg:gap-10 lg:px-10">
-        {/* Copy */}
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="eyebrow">The Annual · New England Edition</p>
+            <p className="eyebrow">{ui.hero.eyebrow}</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="font-display mt-6 text-[clamp(3.4rem,9vw,7.5rem)] font-light leading-[0.92] text-ink">
@@ -34,35 +36,29 @@ export function Hero() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft">
-              A collectible annual that celebrates one extraordinary venue every
-              month — placed, by hand, with the people actually planning their
-              next celebration. Not mass-mailed. Not online noise.{" "}
-              <span className="text-ink">Held by real buyers.</span>
+              {ui.hero.lead}
+              <span className="text-ink">{ui.hero.leadEmphasis}</span>
             </p>
           </Reveal>
           <Reveal delay={0.28}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button href="#feature-your-venue" variant="solid">
-                Feature Your Venue
+                {ui.hero.ctaFeature}
               </Button>
               <Button href="#vendors" variant="outline">
-                Advertise in the Issue
+                {ui.hero.ctaAdvertise}
               </Button>
             </div>
           </Reveal>
           <Reveal delay={0.36}>
             <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-line pt-8">
-              {[
-                ["12", "Venues featured"],
-                ["12", "Months, one each"],
-                ["1", "Copy in every buyer's hands"],
-              ].map(([n, label]) => (
-                <div key={label}>
+              {ui.hero.stats.map((s) => (
+                <div key={s.label}>
                   <dt className="font-display text-4xl font-light text-ink">
-                    {n}
+                    {s.n}
                   </dt>
                   <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-ink-soft">
-                    {label}
+                    {s.label}
                   </dd>
                 </div>
               ))}
@@ -70,11 +66,10 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Floating cover */}
         <div className="lg:col-span-5">
           <Reveal delay={0.24} y={40}>
             <div className="relative mx-auto max-w-sm">
-              <CoverPlate />
+              <CoverPlate annual={ui.hero.coverAnnual} />
             </div>
           </Reveal>
         </div>
@@ -83,8 +78,7 @@ export function Hero() {
   );
 }
 
-/* A mocked magazine cover — swap the gradient for real cover art later. */
-function CoverPlate() {
+function CoverPlate({ annual }: { annual: string }) {
   return (
     <div
       className="grain shadow-editorial relative aspect-[3/4] w-full overflow-hidden rounded-[2px] rotate-[1.5deg]"
@@ -97,7 +91,7 @@ function CoverPlate() {
       <div className="absolute inset-0 flex flex-col justify-between p-8">
         <div className="text-center">
           <p className="text-[0.6rem] uppercase tracking-[0.5em] text-ink/70">
-            The Annual
+            {annual}
           </p>
           <h2 className="font-display mt-3 text-5xl font-light leading-none text-ink">
             Venue

@@ -1,15 +1,11 @@
+"use client";
+
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
-
-const INCLUDES = [
-  "A four-to-five page editorial feature",
-  "Your story and history, written and designed",
-  "A cover month on the annual calendar",
-  "A stack of copies for every tour and event",
-  "Placement beside the vendors you already trust",
-];
+import { useUI } from "@/i18n/ui";
 
 export function FeatureYourVenue() {
+  const ui = useUI();
   return (
     <section
       id="feature-your-venue"
@@ -25,26 +21,26 @@ export function FeatureYourVenue() {
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-10">
         <div>
           <Reveal>
-            <p className="eyebrow">For Venues</p>
+            <p className="eyebrow">{ui.forVenues.eyebrow}</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-[clamp(2.4rem,4.5vw,3.8rem)] font-light leading-[1.04]">
-              Be the cover your
-              <br />
-              clients <span className="italic text-gold-soft">remember</span>.
+              {ui.forVenues.titlePre}
+              <span className="italic text-gold-soft">
+                {ui.forVenues.titleEmph}
+              </span>
+              {ui.forVenues.titlePost}
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-ivory/75">
-              When a couple tours your venue, they leave with something
-              beautiful — your venue, in print, telling its own story. It sits on
-              their counter long after the brochure is gone.
+              {ui.forVenues.lead}
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10">
               <Button href="#contact" variant="light">
-                Request Your Feature
+                {ui.forVenues.cta}
               </Button>
             </div>
           </Reveal>
@@ -53,7 +49,7 @@ export function FeatureYourVenue() {
         <div>
           <Reveal delay={0.2} y={32}>
             <ul className="divide-y divide-ivory/15 border-y border-ivory/15">
-              {INCLUDES.map((item) => (
+              {ui.forVenues.includes.map((item) => (
                 <li key={item} className="flex items-start gap-4 py-5">
                   <span className="font-display mt-0.5 text-xl leading-none text-gold-soft">
                     ✦

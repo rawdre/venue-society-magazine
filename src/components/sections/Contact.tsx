@@ -2,35 +2,25 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
+import { useUI } from "@/i18n/ui";
 
 type Intent = "feature" | "advertise" | "rsvp";
-
-const INTENTS: { key: Intent; label: string; blurb: string }[] = [
-  {
-    key: "feature",
-    label: "Feature a Venue",
-    blurb: "Put your venue on a cover and in your clients' hands.",
-  },
-  {
-    key: "advertise",
-    label: "Advertise",
-    blurb: "Reserve a half or full page beside the venues you serve.",
-  },
-  {
-    key: "rsvp",
-    label: "Launch RSVP",
-    blurb: "Request an invitation to the launch — and the raffle.",
-  },
-];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function Contact() {
+  const ui = useUI();
   const [intent, setIntent] = useState<Intent>("feature");
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle"
   );
   const [error, setError] = useState("");
+
+  const intents: { key: Intent; label: string; blurb: string }[] = [
+    { key: "feature", ...ui.contact.intents.feature },
+    { key: "advertise", ...ui.contact.intents.advertise },
+    { key: "rsvp", ...ui.contact.intents.rsvp },
+  ];
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,7 +37,7 @@ export function Contact() {
     };
 
     if (!payload.name.trim() || !EMAIL_RE.test(payload.email)) {
-      setError("Please enter your name and a valid email.");
+      setError(ui.contact.errors.required);
       setStatus("error");
       return;
     }
@@ -63,27 +53,34 @@ export function Contact() {
       if (!res.ok) throw new Error();
       setStatus("done");
     } catch {
-      setError("Something went wrong — please try again or email us directly.");
+      setError(ui.contact.errors.failed);
       setStatus("error");
     }
   }
 
-  const active = INTENTS.find((i) => i.key === intent)!;
+  const active = intents.find((i) => i.key === intent)!;
+  const submitLabel =
+    intent === "feature"
+      ? ui.contact.submit.feature
+      : intent === "advertise"
+        ? ui.contact.submit.advertise
+        : ui.contact.submit.rsvp;
 
   return (
     <section id="contact" className="relative bg-cream py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-6 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow">Get in Touch</p>
+          <p className="eyebrow">{ui.contact.eyebrow}</p>
           <h2 className="font-display mt-6 text-[clamp(2.2rem,4.6vw,3.6rem)] font-light leading-[1.04] text-ink">
-            Let&rsquo;s make the <span className="italic text-gold">first issue</span>.
+            {ui.contact.titlePre}
+            <span className="italic text-gold">{ui.contact.titleEmph}</span>
+            {ui.contact.titlePost}
           </h2>
           <p className="mx-auto mt-5 max-w-md text-ink-soft">{active.blurb}</p>
         </div>
 
-        {/* intent switch */}
         <div className="mx-auto mt-10 flex max-w-xl flex-wrap justify-center gap-2">
-          {INTENTS.map((i) => (
+          {intents.map((i) => (
             <button
               key={i.key}
               type="button"
@@ -105,17 +102,16 @@ export function Contact() {
 
         {status === "done" ? (
           <div className="mx-auto mt-10 max-w-xl rounded-[3px] border border-gold-soft bg-ivory p-10 text-center shadow-editorial">
-            <p className="font-display text-3xl text-ink">Thank you.</p>
-            <p className="mt-3 text-ink-soft">
-              Your note is in — we&rsquo;ll be in touch shortly about the first
-              issue of Venue Society.
+            <p className="font-display text-3xl text-ink">
+              {ui.contact.success.title}
             </p>
+            <p className="mt-3 text-ink-soft">{ui.contact.success.body}</p>
             <button
               type="button"
               onClick={() => setStatus("idle")}
               className="mt-6 text-[0.66rem] uppercase tracking-[0.24em] text-gold hover:text-ink"
             >
-              Send another →
+              {ui.contact.success.again}
             </button>
           </div>
         ) : (
@@ -124,22 +120,27 @@ export function Contact() {
             className="mx-auto mt-10 max-w-xl rounded-[3px] border border-line bg-ivory p-8 shadow-editorial lg:p-10"
           >
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <Field name="name" label="Your name" required />
-              <Field name="email" label="Email" type="email" required />
-              <Field name="phone" label="Phone (optional)" />
+              <Field name="name" label={ui.contact.fields.name} required />
+              <Field
+                name="email"
+                label={ui.contact.fields.email}
+                type="email"
+                required
+              />
+              <Field name="phone" label={ui.contact.fields.phone} />
 
               {intent === "feature" && (
-                <Field name="org" label="Venue name" />
+                <Field name="org" label={ui.contact.fields.venueName} />
               )}
               {intent === "advertise" && (
                 <>
-                  <Field name="org" label="Company / service" />
+                  <Field name="org" label={ui.contact.fields.company} />
                   <div className="sm:col-span-2">
-                    <Label>Ad size</Label>
+                    <Label>{ui.contact.fields.adSize}</Label>
                     <div className="mt-2 flex gap-3">
                       {[
-                        ["half", "Half page — $150"],
-                        ["full", "Full page — $1,000"],
+                        ["half", ui.contact.fields.half],
+                        ["full", ui.contact.fields.full],
                       ].map(([val, lab]) => (
                         <label
                           key={val}
@@ -160,15 +161,19 @@ export function Contact() {
                 </>
               )}
               {intent === "rsvp" && (
-                <Field name="guests" label="Guests in your party" type="number" />
+                <Field
+                  name="guests"
+                  label={ui.contact.fields.guests}
+                  type="number"
+                />
               )}
             </div>
 
             <div className="mt-5">
               <Label>
                 {intent === "rsvp"
-                  ? "Anything we should know? (optional)"
-                  : "Tell us a little more (optional)"}
+                  ? ui.contact.fields.moreRsvp
+                  : ui.contact.fields.moreFeature}
               </Label>
               <textarea
                 name="message"
@@ -186,13 +191,7 @@ export function Contact() {
               disabled={status === "sending"}
               className="mt-7 inline-flex w-full items-center justify-center rounded-[2px] bg-ink px-7 py-4 text-[0.72rem] font-medium uppercase tracking-[0.26em] text-ivory transition-all hover:bg-espresso disabled:opacity-60"
             >
-              {status === "sending"
-                ? "Sending…"
-                : intent === "feature"
-                  ? "Request a Feature"
-                  : intent === "advertise"
-                    ? "Reserve a Page"
-                    : "Request an Invitation"}
+              {status === "sending" ? ui.contact.submit.sending : submitLabel}
             </button>
           </form>
         )}
