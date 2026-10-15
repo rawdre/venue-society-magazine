@@ -24,6 +24,8 @@ const en = {
   },
   hero: {
     eyebrow: "The Annual · New England Edition",
+    coverLine:
+      "One celebrated venue, every month — placed in the hands of real buyers.",
     lead:
       "A collectible annual that celebrates one extraordinary venue every month — placed, by hand, with the people actually planning their next celebration. Not mass-mailed. Not online noise. ",
     leadEmphasis: "Held by real buyers.",
@@ -225,6 +227,8 @@ const pt: UI = {
   },
   hero: {
     eyebrow: "A Edição Anual · Nova Inglaterra",
+    coverLine:
+      "Um local celebrado a cada mês — nas mãos de quem realmente decide.",
     lead:
       "Uma edição anual de colecionador que celebra um local extraordinário a cada mês — entregue, em mãos, para quem está realmente planejando a próxima celebração. Sem mala direta. Sem ruído online. ",
     leadEmphasis: "Nas mãos de quem decide.",
@@ -424,6 +428,8 @@ const es: UI = {
   },
   hero: {
     eyebrow: "La Edición Anual · Nueva Inglaterra",
+    coverLine:
+      "Un lugar celebrado cada mes — en manos de quien de verdad decide.",
     lead:
       "Un anuario de colección que celebra un lugar extraordinario cada mes — entregado, en mano, a quienes de verdad están planeando su próxima celebración. Sin correo masivo. Sin ruido en línea. ",
     leadEmphasis: "En manos de quien decide.",

@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.3.0_
+_Last updated: 2026-10-15 · v0.4.0_
 
 ## What this is
 
@@ -54,6 +54,13 @@ SVG flags, not emoji, so they render on Windows). **Hamburger now covers mobile
 + tablet** (breakpoint moved `md`→`lg`). Subtle **Comeketo Catering** block in
 the footer with André's contact ((978) 381-1212 / tech@comeketocatering.com /
 comeketocatering.com). All sections + feature pages localized. Build clean.
+
+**v0.4.0** — Artistic direction: integrated a 21st.dev **WebGL Perlin-noise
+shader** at `src/components/ui/perlin-noise-moss.tsx` (added optional
+`colors`/`uniforms` props; moss default preserved). **Hero reimagined as a
+living magazine cover** — brand-tinted champagne/blush marble wash behind a
+masthead (rules, oversized Cormorant title, italic cover line, "No. 01" teaser,
+cursor-reactive, slow drift). Goal: feel like an art magazine, not a SaaS page.
 
 ## Next (not yet done)
 
