@@ -6,7 +6,7 @@ import { APP_VERSION } from "@/lib/version";
 
 export function Footer() {
   return (
-    <footer id="contact" className="grain relative overflow-hidden bg-espresso text-ivory">
+    <footer id="footer" className="grain relative overflow-hidden bg-espresso text-ivory">
       <div
         className="pointer-events-none absolute inset-0"
         style={{

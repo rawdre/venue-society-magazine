@@ -6,10 +6,10 @@ import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
 
 const LINKS = [
-  { label: "The Magazine", href: "#concept" },
-  { label: "Featured Venues", href: "#venues" },
-  { label: "Advertise", href: "#vendors" },
-  { label: "The Launch", href: "#launch" },
+  { label: "The Magazine", href: "/#concept" },
+  { label: "Featured Venues", href: "/#venues" },
+  { label: "Advertise", href: "/#vendors" },
+  { label: "The Launch", href: "/#launch" },
 ];
 
 export function Nav() {
@@ -34,7 +34,7 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10">
         <Link
-          href="#top"
+          href="/"
           aria-label="Venue Society home"
           className="text-ink transition-colors hover:text-gold"
         >
@@ -55,7 +55,7 @@ export function Nav() {
         </ul>
 
         <Link
-          href="#feature-your-venue"
+          href="/#feature-your-venue"
           className="hidden rounded-[2px] bg-ink px-6 py-3 text-[0.68rem] font-medium uppercase tracking-[0.24em] text-ivory transition-all duration-300 hover:bg-espresso hover:-translate-y-0.5 md:inline-flex"
         >
           Get Featured
@@ -104,7 +104,7 @@ export function Nav() {
           ))}
           <li className="pt-2">
             <Link
-              href="#feature-your-venue"
+              href="/#feature-your-venue"
               onClick={() => setOpen(false)}
               className="inline-flex rounded-[2px] bg-ink px-6 py-3 text-[0.68rem] uppercase tracking-[0.24em] text-ivory"
             >

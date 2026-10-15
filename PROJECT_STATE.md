@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.1.0_
+_Last updated: 2026-10-15 · v0.2.0_
 
 ## What this is
 
@@ -32,24 +32,33 @@ Source sheet: Google Sheet "Venue Partners (frequency of jobs there) 04/08"
 ⚠️ The sheet's **Website Link column is misaligned** (each row shows the next
 venue's URL) — verify real URLs independently.
 
-## Done (v0.1.0)
+## Done
 
-- Full one-page site: Hero, Concept, 12 Featured Venues, For Venues, Vendor rate
-  card ($150 half / $1,000 full), The Launch (RSVP + raffle), Podcast, Footer.
-- Sticky nav + mobile drawer, Framer Motion reveals, responsive, version badge.
-- Verified rendering locally (desktop); no app console errors.
+**v0.1.0** — Full one-page site: Hero, Concept, 12 Featured Venues, For Venues,
+Vendor rate card ($150 half / $1,000 full), The Launch (RSVP + raffle), Podcast,
+Footer. Sticky nav + mobile drawer, Framer Motion reveals, responsive, version
+badge. Pushed to GitHub (private): rawdre/venue-society-magazine.
+
+**v0.2.0** — Per-venue **feature pages** at `/venues/[slug]` (all 12 SSG) with
+editorial hero, draft story + history, past-celebration gallery, facts sidebar,
+prev/next nav. **Contact / lead form** (`#contact`) with 3 intents (feature /
+advertise / RSVP) → `POST /api/contact` (stub). Venue cards link to features.
+Nav anchors made root-relative so they work on subpages. Production build clean
+(17 routes). Verified rendering (desktop).
 
 ## Next (not yet done)
 
-1. **Generate real AI glam imagery** (hero cover + 12 venue plates) and wire into
-   `public/venues/`. Currently elegant CSS duotone placeholders.
-2. **Real venue stories + histories + past-event photos** (needs sourcing from
-   venues / their sites / Comeketo's past jobs).
-3. A simple **contact / lead form** (venue feature request, vendor ad reservation,
-   launch RSVP) — currently mailto + anchors.
+1. **Imagery** — all generators were blocked (free paywalled, ATXP login expired,
+   Gemini image billing off). Decision: keep CSS duotone placeholders for now.
+   Revisit via enabled-Gemini-billing / ATXP re-auth / real photography.
+2. **Real venue stories + histories + past-event photos** (story copy is DRAFT).
+3. **Wire the contact form delivery** — `/api/contact` is a stub; connect to email
+   (Resend/SMTP), a Google Sheet, or Close CRM.
 4. **Hosting decision** (Next.js on Vercel vs static on Render) + connect the
    domain Andre already owns.
 5. Logo: refine the VS monogram vs the real brand mark from Instagram.
+6. Minor polish: the feature-hero shows two kickers (plate tag + overlay) that can
+   overlap the nav — tidy when real hero images land.
 
 ## Run
 

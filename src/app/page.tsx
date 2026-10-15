@@ -6,6 +6,7 @@ import { FeatureYourVenue } from "@/components/sections/FeatureYourVenue";
 import { Vendors } from "@/components/sections/Vendors";
 import { Launch } from "@/components/sections/Launch";
 import { Podcast } from "@/components/sections/Podcast";
+import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <Vendors />
         <Launch />
         <Podcast />
+        <Contact />
       </main>
       <Footer />
     </>

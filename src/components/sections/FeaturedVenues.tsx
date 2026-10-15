@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Plate } from "@/components/Plate";
 import { venues } from "@/data/venues";
@@ -28,21 +29,23 @@ export function FeaturedVenues() {
         <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
           {venues.map((v, i) => (
             <Reveal key={v.slug} delay={(i % 3) * 0.08}>
-              <article className="group">
-                <div className="relative">
-                  <Plate
-                    seed={i}
-                    label={v.name}
-                    kicker={v.kicker}
-                    ratio="4 / 5"
-                  />
+              <Link href={`/venues/${v.slug}`} className="group block">
+                <div className="relative overflow-hidden rounded-[2px]">
+                  <div className="transition-transform duration-700 ease-out group-hover:scale-[1.04]">
+                    <Plate
+                      seed={i}
+                      label={v.name}
+                      kicker={v.kicker}
+                      ratio="4 / 5"
+                    />
+                  </div>
                   <span className="absolute right-4 bottom-4 rounded-[2px] bg-ivory/90 px-3 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.24em] text-ink backdrop-blur-sm">
                     {v.month} · {v.issue}
                   </span>
                 </div>
 
                 <div className="mt-5">
-                  <h3 className="font-display text-2xl leading-tight text-ink">
+                  <h3 className="font-display text-2xl leading-tight text-ink transition-colors group-hover:text-gold">
                     {v.name}
                   </h3>
                   <p className="mt-1 text-xs uppercase tracking-[0.22em] text-gold">
@@ -61,8 +64,11 @@ export function FeaturedVenues() {
                       </span>
                     ))}
                   </div>
+                  <span className="mt-4 inline-block text-[0.62rem] uppercase tracking-[0.26em] text-ink-soft transition-colors group-hover:text-gold">
+                    Read the feature →
+                  </span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
