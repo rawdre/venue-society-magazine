@@ -37,6 +37,11 @@ export function VenueArticle({
           ratio="21 / 9"
           rounded="rounded-none"
           className="min-h-[60vh] w-full"
+          src={v.hasImage ? v.image : undefined}
+          alt={v.hasImage ? `${v.name}, ${v.town}, ${v.state}` : undefined}
+          credit={v.credit}
+          priority
+          sizes="100vw"
         />
         <div className="pointer-events-none absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-6xl px-6 pb-12 lg:px-10 lg:pb-16">
@@ -126,6 +131,32 @@ export function VenueArticle({
                   <Fact label={ui.feature.factCatering}>
                     {ui.feature.cateringValue}
                   </Fact>
+                  {venue.hasImage && venue.credit && (
+                    <Fact label="Photograph">
+                      {venue.credit.author && (
+                        <>
+                          <a
+                            href={venue.credit.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-line underline-offset-2 transition-colors hover:text-gold"
+                          >
+                            {venue.credit.author}
+                          </a>
+                          {", "}
+                        </>
+                      )}
+                      <a
+                        href={venue.credit.licenseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-line underline-offset-2 transition-colors hover:text-gold"
+                      >
+                        {venue.credit.license}
+                      </a>
+                      , via Wikimedia Commons
+                    </Fact>
+                  )}
                 </dl>
                 <div className="mt-8">
                   <Button href="/#contact" variant="solid" className="w-full">

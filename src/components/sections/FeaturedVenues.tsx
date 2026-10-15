@@ -50,6 +50,14 @@ export function FeaturedVenues() {
                         label={v.name}
                         kicker={v.kicker}
                         ratio="4 / 5"
+                        src={v.hasImage ? v.image : undefined}
+                        alt={
+                          v.hasImage
+                            ? `${v.name}, ${v.town}, ${v.state}`
+                            : undefined
+                        }
+                        credit={v.credit}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
                     <span className="absolute right-4 bottom-4 rounded-[2px] bg-ivory/90 px-3 py-1.5 text-[0.6rem] font-medium uppercase tracking-[0.24em] text-ink backdrop-blur-sm">

@@ -1,11 +1,15 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
+import type { VenueCredit } from "@/data/venues";
 
 /**
  * Editorial "plate" — a framed image slot.
  *
- * For v1 we render a refined duotone placeholder (so the layout reads as a
- * finished magazine). Drop a real file at `src` under /public and set
- * `hasImage` to switch it in — the frame, ratio, and shadow stay identical.
+ * With `src` it renders a real photograph (object-cover inside the frame);
+ * without one it falls back to a refined duotone placeholder so the layout
+ * still reads as a finished magazine. Creative Commons photos carry a small
+ * on-image credit line (legally required for CC BY / CC BY-SA; skipped for
+ * CC0 / public domain, where no attribution is owed).
  */
 
 const DUOTONES = [
@@ -24,6 +28,11 @@ export function Plate({
   ratio = "4 / 5",
   className,
   rounded = "rounded-[2px]",
+  src,
+  alt,
+  credit,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",
 }: {
   seed?: number;
   label?: string;
@@ -31,8 +40,15 @@ export function Plate({
   ratio?: string;
   className?: string;
   rounded?: string;
+  src?: string;
+  alt?: string;
+  credit?: VenueCredit;
+  priority?: boolean;
+  sizes?: string;
 }) {
   const bg = DUOTONES[seed % DUOTONES.length];
+  const showCredit = Boolean(credit && credit.license !== "CC0");
+
   return (
     <div
       className={cn(
@@ -40,13 +56,24 @@ export function Plate({
         rounded,
         className
       )}
-      style={{ aspectRatio: ratio, background: bg }}
+      style={{ aspectRatio: ratio, background: src ? "#2b2621" : bg }}
     >
-      {/* thin inner frame, like a printed plate */}
-      <div className="pointer-events-none absolute inset-3 border border-white/35" />
+      {src && (
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          fill
+          priority={priority}
+          sizes={sizes}
+          className="object-cover"
+        />
+      )}
 
-      {/* faint oversized initial */}
-      {label && (
+      {/* thin inner frame, like a printed plate */}
+      <div className="pointer-events-none absolute inset-3 z-10 border border-white/35" />
+
+      {/* faint oversized initial — placeholder only */}
+      {label && !src && (
         <span
           className="font-display absolute -right-2 -bottom-6 select-none text-[11rem] leading-none text-white/20"
           aria-hidden
@@ -57,19 +84,29 @@ export function Plate({
 
       {/* kicker tag */}
       {kicker && (
-        <span className="absolute left-5 top-5 text-[0.62rem] font-medium uppercase tracking-[0.3em] text-white/85">
+        <span className="absolute left-5 top-5 z-10 text-[0.62rem] font-medium uppercase tracking-[0.3em] text-white/90 drop-shadow">
           {kicker}
         </span>
       )}
 
-      {/* soft vignette for depth */}
+      {/* depth: radial vignette for placeholders, bottom scrim under photos
+          so overlaid hero/label text stays legible */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(120% 90% at 50% 10%, transparent 40%, rgba(43,38,33,0.28) 100%)",
+          background: src
+            ? "linear-gradient(to top, rgba(43,38,33,0.55) 0%, rgba(43,38,33,0.12) 32%, transparent 60%)"
+            : "radial-gradient(120% 90% at 50% 10%, transparent 40%, rgba(43,38,33,0.28) 100%)",
         }}
       />
+
+      {/* photo credit — required for CC BY / CC BY-SA */}
+      {showCredit && credit && (
+        <span className="absolute right-3 bottom-2 z-10 max-w-[90%] truncate text-[0.52rem] uppercase tracking-[0.12em] text-white/70">
+          {credit.author ? `${credit.author} · ` : ""}
+          {credit.license}
+        </span>
+      )}
     </div>
   );
 }

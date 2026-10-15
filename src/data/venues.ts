@@ -1,3 +1,13 @@
+// Photo attribution. Creative Commons images (CC BY / CC BY-SA) legally
+// require a visible credit; CC0 / public-domain images do not (author kept
+// as a courtesy). Omitted entirely when we have no licensed image yet.
+export type VenueCredit = {
+  author?: string; // omit for CC0 / public domain
+  license: string; // e.g. "CC BY-SA 4.0", "CC0"
+  licenseUrl: string;
+  sourceUrl: string; // Wikimedia Commons file page
+};
+
 export type Venue = {
   slug: string;
   name: string;
@@ -11,8 +21,14 @@ export type Venue = {
   story: string[]; // draft feature paragraphs (real history replaces this)
   capacity: string;
   tags: string[];
-  image: string; // /public path — AI/real photography drops in here
+  image: string; // /public path — real photography drops in here
+  hasImage?: boolean; // true once a real licensed photo exists at `image`
+  credit?: VenueCredit; // required when the licence needs attribution
 };
+
+const CC_BY_SA_4 = "https://creativecommons.org/licenses/by-sa/4.0/";
+const CC_BY_2 = "https://creativecommons.org/licenses/by/2.0/";
+const CC0 = "https://creativecommons.org/publicdomain/zero/1.0/";
 
 // The 2026 editorial calendar — one celebrated venue per month.
 // Ranked on partnership depth + prestige + visual variety from the
@@ -37,6 +53,14 @@ export const venues: Venue[] = [
     capacity: "Up to 500 guests",
     tags: ["Historic", "Gala", "Grand Hall"],
     image: "/venues/mechanics-hall.jpg",
+    hasImage: true,
+    credit: {
+      author: "Kenneth C. Zirkel",
+      license: "CC BY-SA 4.0",
+      licenseUrl: CC_BY_SA_4,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Great_Hall_of_Mechanics_Hall,_Worcester_Massachusetts.jpg",
+    },
   },
   {
     slug: "hammond-castle",
@@ -56,6 +80,14 @@ export const venues: Venue[] = [
     capacity: "Up to 180 guests",
     tags: ["Oceanfront", "Castle", "Dramatic"],
     image: "/venues/hammond-castle.jpg",
+    hasImage: true,
+    credit: {
+      author: "Robert Linsdell",
+      license: "CC BY 2.0",
+      licenseUrl: CC_BY_2,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Hammond_Castle_Museum,_80_Hesperus_Ave,_Gloucester_(493883)_(11683064686).jpg",
+    },
   },
   {
     slug: "asa-waters-mansion",
@@ -75,6 +107,14 @@ export const venues: Venue[] = [
     capacity: "Up to 150 guests",
     tags: ["Historic", "Mansion", "Garden"],
     image: "/venues/asa-waters-mansion.jpg",
+    hasImage: true,
+    credit: {
+      author: "Daderot",
+      license: "CC0",
+      licenseUrl: CC0,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Asa_Waters_Mansion_-_Millbury,_MA_-_DSC04584.JPG",
+    },
   },
   {
     slug: "harding-allen-estate",
@@ -113,6 +153,14 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Historic", "Mansion", "Grounds"],
     image: "/venues/commanders-mansion.jpg",
+    hasImage: true,
+    credit: {
+      author: "Magicpiano",
+      license: "CC BY-SA 4.0",
+      licenseUrl: CC_BY_SA_4,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:WatertownMA_ArsenalCommandersQuarters.jpg",
+    },
   },
   {
     slug: "greylock-works",
@@ -132,6 +180,14 @@ export const venues: Venue[] = [
     capacity: "Up to 300 guests",
     tags: ["Industrial", "Berkshires", "Modern"],
     image: "/venues/greylock-works.jpg",
+    hasImage: true,
+    credit: {
+      author: "Beyond My Ken",
+      license: "CC BY-SA 4.0",
+      licenseUrl: CC_BY_SA_4,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Greylock_(Cariddi)_Mill_North_Adams_west_building.jpg",
+    },
   },
   {
     slug: "christalight-event-hall",
@@ -170,6 +226,14 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Museum", "Historic", "Riverside"],
     image: "/venues/charles-river-museum.jpg",
+    hasImage: true,
+    credit: {
+      author: "Sdkb",
+      license: "CC BY-SA 4.0",
+      licenseUrl: CC_BY_SA_4,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Charles_River_Museum_of_Industry.jpg",
+    },
   },
   {
     slug: "cathedral-of-the-pines",
@@ -189,6 +253,14 @@ export const venues: Venue[] = [
     capacity: "Up to 300 guests",
     tags: ["Outdoor", "Mountain View", "Ceremony"],
     image: "/venues/cathedral-of-the-pines.jpg",
+    hasImage: true,
+    credit: {
+      author: "DavidBrooks",
+      license: "CC BY-SA 4.0",
+      licenseUrl: CC_BY_SA_4,
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Cathedral_of_the_Pines_sanctuary.jpg",
+    },
   },
   {
     slug: "five-bridge-inn",

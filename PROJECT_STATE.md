@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.4.0_
+_Last updated: 2026-10-15 · v0.6.0_
 
 ## What this is
 
@@ -68,11 +68,37 @@ Hero + Launch + Podcast (kept off text-heavy sections for readability/perf).
 Magazine **chapter numerals I–VII** (`Overline`) across every section header.
 Mood: soft light champagne (Andre's pick).
 
+**v0.6.0** — **Real venue photography (7 of 12).** Pivoted from AI generation to
+sourcing REAL, openly-licensed photos (Wikimedia Commons / CC) after confirming
+the artlist account is free-trial only (0 credits left; 2 free image gens were
+spent on evocative style-tests for Mechanics Hall + Hammond Castle, saved to the
+session scratchpad as free fallbacks — now superseded by real photos).
+`Plate.tsx` now renders a real `<img>` (next/image, object-cover) with a bottom
+scrim for text legibility, falling back to the duotone placeholder when a venue
+has no photo yet. `venues.ts` gained `hasImage` + a `credit` ({author, license,
+licenseUrl, sourceUrl}) carrying the mandatory CC attribution; cards + the 21:9
+feature hero show a subtle on-image credit chip, and the feature sidebar shows a
+fully-linked "Photograph" attribution (author → Commons file page, license →
+licence deed). Images optimised with ffmpeg to ≤1920px / 3.9 MB total in
+`public/venues/`. Build clean (17 routes); verified in-browser (grid + feature).
+
+**Images sourced (usable, with credit):** Mechanics Hall (CC BY-SA 4.0, K.C.
+Zirkel) · Hammond Castle (CC BY 2.0, R. Linsdell) · Asa Waters Mansion (CC0,
+Daderot) · Commanders Mansion (CC BY-SA 4.0, Magicpiano — 1024px, web-only) ·
+Greylock WORKS (CC BY-SA 4.0, Beyond My Ken — 2K, web/half-page) · Charles River
+Museum (CC BY-SA 4.0, Sdkb) · Cathedral of the Pines (CC BY-SA 4.0, DavidBrooks).
+
 ## Next (not yet done)
 
-1. **Imagery** — all generators were blocked (free paywalled, ATXP login expired,
-   Gemini image billing off). Decision: keep CSS duotone placeholders for now.
-   Revisit via enabled-Gemini-billing / ATXP re-auth / real photography.
+1. **Imagery — 5 venues still need photos (permission required):** Harding Allen
+   Estate, Christalight Event Hall, Five Bridge Inn, The Hacienda, Monoosnock
+   Country Club have NOTHING openly licensed (private/commercial; photos only on
+   their own sites + wedding-listing platforms). Route: email each venue for
+   official press photos (natural ask — they're being featured free). They render
+   as duotone placeholders until then. Also: request hi-res for Commanders Mansion
+   & Greylock (print-grade), and Mechanics Hall has a real press room worth an
+   email for premium assets. Full source table + per-venue contacts captured
+   2026-10-15.
 2. **Real venue stories + histories + past-event photos** (story copy is DRAFT).
 3. **Wire the contact form delivery** — `/api/contact` is a stub; connect to email
    (Resend/SMTP), a Google Sheet, or Close CRM.
