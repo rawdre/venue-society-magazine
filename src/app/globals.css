@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   VENUE SOCIETY — Light airy editorial theme
+   Ivory grounds · antique gold + blush accents · Cormorant display type
+---------------------------------------------------------------------------- */
+
+@theme inline {
+  /* Palette */
+  --color-ivory: #fbf8f2;
+  --color-cream: #f4ece0;
+  --color-sand: #ece1d1;
+  --color-ink: #2b2621;
+  --color-ink-soft: #5c5349;
+  --color-gold: #b28e54;
+  --color-gold-soft: #c9ae7e;
+  --color-blush: #e2c5bb;
+  --color-blush-soft: #f1e0d9;
+  --color-espresso: #2f2922;
+  --color-line: rgba(43, 38, 33, 0.14);
+
+  /* Fonts (wired by next/font in layout.tsx) */
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: var(--color-ivory);
+  --foreground: var(--color-ink);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper grain for the glossy-print feeling */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Display helpers */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-gold);
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold-soft),
+    transparent
+  );
+}
+
+/* Editorial drop-shadow for floating magazine imagery */
+.shadow-editorial {
+  box-shadow: 0 30px 60px -30px rgba(43, 38, 33, 0.35),
+    0 10px 24px -16px rgba(43, 38, 33, 0.25);
+}
+
+/* Fade-in base for progressive enhancement (JS-less fallback shows content) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
