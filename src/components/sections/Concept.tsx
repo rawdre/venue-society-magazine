@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
+import { Overline } from "@/components/Overline";
 import { useUI } from "@/i18n/ui";
 
 export function Concept() {
@@ -11,7 +12,7 @@ export function Concept() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="eyebrow">{ui.concept.eyebrow}</p>
+              <Overline numeral="I">{ui.concept.eyebrow}</Overline>
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="font-display mt-6 text-[clamp(2.4rem,4.5vw,3.6rem)] font-light leading-[1.05] text-ink">

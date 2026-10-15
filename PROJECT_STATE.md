@@ -62,6 +62,12 @@ living magazine cover** — brand-tinted champagne/blush marble wash behind a
 masthead (rules, oversized Cormorant title, italic cover line, "No. 01" teaser,
 cursor-reactive, slow drift). Goal: feel like an art magazine, not a SaaS page.
 
+**v0.5.0** — Artistic direction rolled site-wide: shared `ShaderField`
+(`components/ui/shader-field.tsx`) with the brand marble; shader "moments" in
+Hero + Launch + Podcast (kept off text-heavy sections for readability/perf).
+Magazine **chapter numerals I–VII** (`Overline`) across every section header.
+Mood: soft light champagne (Andre's pick).
+
 ## Next (not yet done)
 
 1. **Imagery** — all generators were blocked (free paywalled, ATXP login expired,

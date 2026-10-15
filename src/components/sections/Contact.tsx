@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
+import { Overline } from "@/components/Overline";
 import { useUI } from "@/i18n/ui";
 
 type Intent = "feature" | "advertise" | "rsvp";
@@ -70,7 +71,9 @@ export function Contact() {
     <section id="contact" className="relative bg-cream py-24 lg:py-32">
       <div className="mx-auto max-w-3xl px-6 lg:px-10">
         <div className="text-center">
-          <p className="eyebrow">{ui.contact.eyebrow}</p>
+          <Overline numeral="VII" className="justify-center">
+            {ui.contact.eyebrow}
+          </Overline>
           <h2 className="font-display mt-6 text-[clamp(2.2rem,4.6vw,3.6rem)] font-light leading-[1.04] text-ink">
             {ui.contact.titlePre}
             <span className="italic text-gold">{ui.contact.titleEmph}</span>

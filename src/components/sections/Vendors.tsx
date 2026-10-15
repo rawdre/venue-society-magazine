@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
+import { Overline } from "@/components/Overline";
 import { Button } from "@/components/Button";
 import { cn } from "@/lib/cn";
 import { useUI } from "@/i18n/ui";
@@ -29,7 +30,7 @@ export function Vendors() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <p className="eyebrow">{ui.vendors.eyebrow}</p>
+            <Overline numeral="IV">{ui.vendors.eyebrow}</Overline>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-[clamp(2.4rem,5vw,4rem)] font-light leading-[1.02] text-ink">

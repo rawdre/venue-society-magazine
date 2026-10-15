@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/Reveal";
+import { Overline } from "@/components/Overline";
 import { Button } from "@/components/Button";
 import { useUI } from "@/i18n/ui";
 
@@ -21,7 +22,7 @@ export function FeatureYourVenue() {
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-10">
         <div>
           <Reveal>
-            <p className="eyebrow">{ui.forVenues.eyebrow}</p>
+            <Overline numeral="III">{ui.forVenues.eyebrow}</Overline>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-[clamp(2.4rem,4.5vw,3.8rem)] font-light leading-[1.04]">
