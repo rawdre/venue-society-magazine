@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-16 · v0.8.0 (branch `glam-pass`, awaiting André's OK)_
+_Last updated: 2026-10-16 · v0.9.0 (branch `glam-pass`, awaiting André's OK)_
 
 ## What this is
 
@@ -122,6 +122,21 @@ real browser to grab); Greylock has a few slightly larger CC exterior angles.
 - **Email:** team@comeketocatering.com everywhere (hello@venuesociety.com and tech@ removed).
 - **Share preview + icons:** `app/opengraph-image.png` (1200×630 cover), `icon.png`,
   `apple-icon.png` (gold VS monogram). Lint clean (LanguageProvider → useSyncExternalStore).
+
+**v0.9.0 — Odette + editorial spread + invitation form.**
+- **Odette, the concierge** (`components/concierge/`): gold line-art swan cameo (floating,
+  gilt halo, twinkle) bottom-right; "Ask Odette" ribbon once; ivory/gilt chat panel in
+  Bodoni/Cormorant; suggestion chips; EN/PT/ES. Answers come from Command Center
+  `POST /public/magazine-concierge` (CC v1.66.0, Groq failover chain), grounded in
+  **`/concierge.json`** (built from `venues.ts` + `lib/concierge-catalog.ts` — keep it current;
+  CC caches it 1 h and has a bundled snapshot). "Take me there" buttons scroll / route to the
+  exact venue page or section; links are allow-listed server-side. If CC is down, a local
+  keyword search (`local-suggest.ts`) still routes people.
+- **The Idea** section is an editorial spread: framed pages, oversized foil numerals,
+  chapter labels, sticky pull quote. `.gilt-frame` fixed (border + inset outline).
+- **Contact form** is an invitation card: gilt frame, gold wax-seal monogram, underlined
+  serif fields, italic foil tabs, shine-sweep submit.
+- `COMEKETO` contact moved to `lib/contact.ts` (server-safe); Podcast section got `id="podcast"`.
 
 ## Next (not yet done)
 

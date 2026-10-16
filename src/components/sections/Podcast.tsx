@@ -8,7 +8,7 @@ import { useUI } from "@/i18n/ui";
 export function Podcast() {
   const ui = useUI();
   return (
-    <section className="relative overflow-hidden bg-cream py-20 lg:py-24">
+    <section id="podcast" className="relative overflow-hidden bg-cream py-20 lg:py-24">
       <ShaderField
         className="absolute inset-0"
         uniforms={{ seed: 15, scale: 1.7, intensity: 0.38, drift: 0.008 }}

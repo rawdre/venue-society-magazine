@@ -95,33 +95,47 @@ export function Contact() {
             <span className="foil italic">{ui.contact.titleEmph}</span>
             {ui.contact.titlePost}
           </h2>
-          <p className="mx-auto mt-5 max-w-md text-ink-soft">{active.blurb}</p>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-xl flex-wrap justify-center gap-2">
+        <div
+          className="mx-auto mt-10 flex max-w-xl flex-wrap items-end justify-center gap-x-8 gap-y-3"
+          role="tablist"
+        >
           {intents.map((i) => (
             <button
               key={i.key}
               type="button"
+              role="tab"
+              aria-selected={intent === i.key}
               onClick={() => {
                 setIntent(i.key);
                 setStatus("idle");
               }}
-              className={cn(
-                "rounded-[2px] border px-5 py-2.5 text-[0.66rem] font-medium uppercase tracking-[0.2em] transition-all",
-                intent === i.key
-                  ? "border-ink bg-ink text-ivory"
-                  : "border-line text-ink-soft hover:border-gold hover:text-gold"
-              )}
+              className="group relative pb-2"
             >
-              {i.label}
+              <span
+                className={cn(
+                  "font-display text-[1.35rem] italic transition-colors",
+                  intent === i.key ? "foil" : "text-ink/45 group-hover:text-ink"
+                )}
+              >
+                {i.label}
+              </span>
+              <span
+                className={cn(
+                  "absolute inset-x-0 -bottom-px mx-auto h-px bg-gold transition-all duration-500",
+                  intent === i.key ? "w-full" : "w-0 group-hover:w-1/2"
+                )}
+              />
             </button>
           ))}
         </div>
 
         {status === "done" ? (
-          <div className="mx-auto mt-10 max-w-xl rounded-[3px] border border-gold-soft bg-ivory p-10 text-center shadow-editorial">
-            <p className="font-display text-3xl text-ink">
+          <div className="relative mx-auto mt-16 max-w-xl bg-ivory px-10 pt-16 pb-12 text-center shadow-editorial">
+            <div className="gilt-frame pointer-events-none absolute inset-3" />
+            <Seal />
+            <p className="font-display foil text-4xl italic">
               {ui.contact.success.title}
             </p>
             <p className="mt-3 text-ink-soft">{ui.contact.success.body}</p>
@@ -136,8 +150,14 @@ export function Contact() {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="relative mx-auto mt-10 max-w-xl rounded-[3px] border border-line bg-ivory p-8 shadow-editorial lg:p-10"
+            className="relative mx-auto mt-16 max-w-xl bg-ivory px-8 pt-16 pb-10 shadow-editorial sm:px-12 lg:pb-12"
           >
+            {/* an invitation card: gilt double rule + wax-seal monogram */}
+            <div className="gilt-frame pointer-events-none absolute inset-3" />
+            <Seal />
+            <p className="font-serif mb-8 text-center text-[1.15rem] text-ink-soft italic">
+              {active.blurb}
+            </p>
             {/* honeypot: hidden from people, irresistible to bots */}
             <input
               type="text"
@@ -147,7 +167,7 @@ export function Contact() {
               aria-hidden
               className="absolute -left-[9999px] h-px w-px opacity-0"
             />
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2">
               <Field name="name" label={ui.contact.fields.name} required />
               <Field
                 name="email"
@@ -172,7 +192,7 @@ export function Contact() {
                       ].map(([val, lab]) => (
                         <label
                           key={val}
-                          className="flex flex-1 cursor-pointer items-center gap-2 rounded-[2px] border border-line px-4 py-3 text-sm text-ink-soft has-[:checked]:border-gold has-[:checked]:text-ink"
+                          className="font-serif flex flex-1 cursor-pointer items-center gap-2 border border-gold/30 px-4 py-3 text-[1.05rem] text-ink-soft transition-colors has-[:checked]:border-gold has-[:checked]:bg-cream has-[:checked]:text-ink"
                         >
                           <input
                             type="radio"
@@ -197,7 +217,7 @@ export function Contact() {
               )}
             </div>
 
-            <div className="mt-5">
+            <div className="mt-7">
               <Label>
                 {intent === "rsvp"
                   ? ui.contact.fields.moreRsvp
@@ -205,8 +225,8 @@ export function Contact() {
               </Label>
               <textarea
                 name="message"
-                rows={4}
-                className="mt-2 w-full rounded-[2px] border border-line bg-ivory px-4 py-3 text-ink outline-none transition-colors focus:border-gold"
+                rows={3}
+                className="font-serif mt-1 w-full resize-none border-0 border-b border-gold/35 bg-transparent px-0 py-2 text-[1.15rem] text-ink outline-none transition-colors focus:border-gold"
               />
             </div>
 
@@ -217,9 +237,11 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="mt-7 inline-flex w-full items-center justify-center rounded-[2px] bg-ink px-7 py-4 text-[0.72rem] font-medium uppercase tracking-[0.26em] text-ivory transition-all hover:bg-espresso disabled:opacity-60"
+              className="btn-shine group mt-10 inline-flex w-full items-center justify-center gap-4 rounded-[1px] bg-ink px-7 py-[1.1rem] text-[0.72rem] font-medium uppercase tracking-[0.3em] text-ivory transition-all hover:bg-espresso hover:shadow-[0_14px_30px_-14px_rgba(178,142,84,0.7)] disabled:opacity-60"
             >
+              <span className="text-gold-soft transition-transform duration-500 group-hover:rotate-90">✦</span>
               {status === "sending" ? ui.contact.submit.sending : submitLabel}
+              <span className="text-gold-soft transition-transform duration-500 group-hover:-rotate-90">✦</span>
             </button>
           </form>
         )}
@@ -230,7 +252,7 @@ export function Contact() {
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-[0.6rem] uppercase tracking-[0.24em] text-ink-soft">
+    <span className="text-[0.58rem] font-medium uppercase tracking-[0.3em] text-gold">
       {children}
     </span>
   );
@@ -257,8 +279,27 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="mt-2 w-full rounded-[2px] border border-line bg-ivory px-4 py-3 text-ink outline-none transition-colors focus:border-gold"
+        className="font-serif mt-1 w-full border-0 border-b border-gold/35 bg-transparent px-0 py-2 text-[1.15rem] text-ink outline-none transition-colors focus:border-gold"
       />
     </label>
+  );
+}
+
+/** Gold wax-seal monogram that sits on the card's top edge. */
+function Seal() {
+  return (
+    <div
+      className="absolute -top-9 left-1/2 flex h-[4.5rem] w-[4.5rem] -translate-x-1/2 items-center justify-center rounded-full shadow-[0_10px_24px_-10px_rgba(125,95,46,0.8)]"
+      style={{
+        background:
+          "radial-gradient(circle at 32% 28%, #f3e2b0 0%, #c9a45f 38%, #8e6d36 78%, #6f5428 100%)",
+      }}
+      aria-hidden
+    >
+      <div className="absolute inset-[5px] rounded-full border border-[#fff3d6]/50" />
+      <span className="font-display text-[1.45rem] italic text-[#fffaf0] [text-shadow:0_1px_2px_rgba(80,58,24,0.6)]">
+        VS
+      </span>
+    </div>
   );
 }

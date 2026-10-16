@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Cormorant_Garamond, Jost } from "next/font/google";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { Concierge } from "@/components/concierge/Concierge";
 import "./globals.css";
 
 // Bodoni Moda: a Didone with real optical sizes — hairline serifs at cover
@@ -51,7 +52,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bodoni.variable} ${cormorant.variable} ${jost.variable} antialiased`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <Concierge />
+        </LanguageProvider>
       </body>
     </html>
   );

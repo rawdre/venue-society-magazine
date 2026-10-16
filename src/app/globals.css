@@ -126,6 +126,60 @@
   }
 }
 
+/* A slow highlight that crosses a button on hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(233, 211, 156, 0.35),
+    transparent
+  );
+  transition: transform 0.9s ease;
+}
+.btn-shine:hover::after {
+  transform: translateX(120%) skewX(-20deg);
+}
+
+/* Odette the concierge: a slow float, a breathing gilt halo, a twinkle */
+.concierge-float {
+  animation: concierge-float 5s ease-in-out infinite;
+}
+.concierge-halo {
+  background: conic-gradient(from 0deg, #e9d39c, #b8914f, #f6e7bf, #8e6d36, #e9d39c);
+  opacity: 0.55;
+  filter: blur(6px);
+  animation: concierge-spin 9s linear infinite;
+}
+.concierge-twinkle {
+  transform-origin: 66px 24px;
+  animation: concierge-twinkle 3.2s ease-in-out infinite;
+}
+.concierge-dot {
+  animation: concierge-dot 1.1s ease-in-out infinite;
+}
+@keyframes concierge-float {
+  50% { transform: translateY(-5px); }
+}
+@keyframes concierge-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes concierge-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes concierge-dot {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
 /* Double gold rule — the classic cover border */
 .gilt-frame {
   border: 1px solid rgba(178, 142, 84, 0.7);
@@ -164,7 +218,10 @@
     scroll-behavior: auto;
   }
   .foil,
-  .foil-light {
+  .foil-light,
+  .concierge-float,
+  .concierge-halo,
+  .concierge-twinkle {
     animation: none;
   }
 }
