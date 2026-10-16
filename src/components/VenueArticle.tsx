@@ -131,6 +131,31 @@ export function VenueArticle({
                   <Fact label={ui.feature.factCatering}>
                     {ui.feature.cateringValue}
                   </Fact>
+                  {venue.contact &&
+                    (venue.contact.website || venue.contact.phone) && (
+                      <Fact label="Visit">
+                        {venue.contact.website && (
+                          <a
+                            href={venue.contact.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block underline decoration-line underline-offset-2 transition-colors hover:text-gold"
+                          >
+                            {venue.contact.website
+                              .replace(/^https?:\/\//, "")
+                              .replace(/\/$/, "")}
+                          </a>
+                        )}
+                        {venue.contact.phone && (
+                          <a
+                            href={`tel:${venue.contact.phone.replace(/[^\d+]/g, "")}`}
+                            className="mt-1 block transition-colors hover:text-gold"
+                          >
+                            {venue.contact.phone}
+                          </a>
+                        )}
+                      </Fact>
+                    )}
                   {venue.hasImage && venue.credit && (
                     <Fact label="Photograph">
                       {venue.credit.author && (

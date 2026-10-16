@@ -8,6 +8,13 @@ export type VenueCredit = {
   sourceUrl: string; // Wikimedia Commons file page
 };
 
+// Public contact details for the featured venue, from its official site.
+export type VenueContact = {
+  website?: string; // full https URL
+  phone?: string; // as published
+  email?: string; // only if publicly listed
+};
+
 export type Venue = {
   slug: string;
   name: string;
@@ -24,6 +31,7 @@ export type Venue = {
   image: string; // /public path — real photography drops in here
   hasImage?: boolean; // true once a real licensed photo exists at `image`
   credit?: VenueCredit; // required when the licence needs attribution
+  contact?: VenueContact; // public website / phone / email for the venue
 };
 
 const CC_BY_SA_4 = "https://creativecommons.org/licenses/by-sa/4.0/";
@@ -53,6 +61,10 @@ export const venues: Venue[] = [
     capacity: "Up to 500 guests",
     tags: ["Historic", "Gala", "Grand Hall"],
     image: "/venues/mechanics-hall.jpg",
+    contact: {
+      website: "https://www.mechanicshall.org",
+      phone: "(508) 752-5608",
+    },
     hasImage: true,
     credit: {
       author: "Kenneth C. Zirkel",
@@ -80,6 +92,10 @@ export const venues: Venue[] = [
     capacity: "Up to 180 guests",
     tags: ["Oceanfront", "Castle", "Dramatic"],
     image: "/venues/hammond-castle.jpg",
+    contact: {
+      website: "https://hammondcastle.org",
+      phone: "(978) 283-2080",
+    },
     hasImage: true,
     credit: {
       author: "Robert Linsdell",
@@ -107,6 +123,10 @@ export const venues: Venue[] = [
     capacity: "Up to 150 guests",
     tags: ["Historic", "Mansion", "Garden"],
     image: "/venues/asa-waters-mansion.jpg",
+    contact: {
+      website: "https://asawaters.org",
+      phone: "(508) 865-0855",
+    },
     hasImage: true,
     credit: {
       author: "Daderot",
@@ -134,6 +154,9 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Estate", "Garden Ceremony", "Luxe"],
     image: "/venues/harding-allen-estate.jpg",
+    contact: {
+      website: "https://www.hardingallenestate.com",
+    },
   },
   {
     slug: "commanders-mansion",
@@ -153,6 +176,10 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Historic", "Mansion", "Grounds"],
     image: "/venues/commanders-mansion.jpg",
+    contact: {
+      website: "https://www.commandersmansion.com",
+      phone: "(617) 926-7755",
+    },
     hasImage: true,
     credit: {
       author: "Magicpiano",
@@ -180,6 +207,10 @@ export const venues: Venue[] = [
     capacity: "Up to 300 guests",
     tags: ["Industrial", "Berkshires", "Modern"],
     image: "/venues/greylock-works.jpg",
+    contact: {
+      website: "https://greylockworks.com",
+      phone: "(413) 200-9890",
+    },
     hasImage: true,
     credit: {
       author: "Beyond My Ken",
@@ -207,6 +238,10 @@ export const venues: Venue[] = [
     capacity: "Up to 250 guests",
     tags: ["All-Inclusive", "Modern", "Ballroom"],
     image: "/venues/christalight-event-hall.jpg",
+    contact: {
+      website: "https://www.christalightevents.com",
+      phone: "(844) 495-4448",
+    },
   },
   {
     slug: "charles-river-museum",
@@ -226,6 +261,10 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Museum", "Historic", "Riverside"],
     image: "/venues/charles-river-museum.jpg",
+    contact: {
+      website: "https://www.charlesrivermuseum.org",
+      phone: "(781) 893-5410",
+    },
     hasImage: true,
     credit: {
       author: "Sdkb",
@@ -253,6 +292,10 @@ export const venues: Venue[] = [
     capacity: "Up to 300 guests",
     tags: ["Outdoor", "Mountain View", "Ceremony"],
     image: "/venues/cathedral-of-the-pines.jpg",
+    contact: {
+      website: "https://cathedralofthepines.org",
+      phone: "(603) 899-3300",
+    },
     hasImage: true,
     credit: {
       author: "DavidBrooks",
@@ -280,6 +323,10 @@ export const venues: Venue[] = [
     capacity: "Up to 300 guests",
     tags: ["Inn", "Gardens", "Classic"],
     image: "/venues/five-bridge-inn.jpg",
+    contact: {
+      website: "https://www.fivebridgeinn.com",
+      phone: "(508) 252-3190",
+    },
   },
   {
     slug: "the-hacienda-venue",
@@ -299,6 +346,10 @@ export const venues: Venue[] = [
     capacity: "Up to 200 guests",
     tags: ["Indoor/Outdoor", "Stay-Over", "Versatile"],
     image: "/venues/the-hacienda-venue.jpg",
+    contact: {
+      website: "https://www.thehaciendavenue.com",
+      phone: "(508) 861-9568",
+    },
   },
   {
     slug: "monoosnock-country-club",
@@ -318,6 +369,10 @@ export const venues: Venue[] = [
     capacity: "200+ guests",
     tags: ["Country Club", "Ballroom", "Views"],
     image: "/venues/monoosnock-country-club.jpg",
+    contact: {
+      website: "https://monoosnockcountryclub.com",
+      phone: "(978) 537-1872",
+    },
   },
 ];
 

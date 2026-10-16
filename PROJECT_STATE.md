@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.6.0_
+_Last updated: 2026-10-15 · v0.7.0_
 
 ## What this is
 
@@ -87,6 +87,18 @@ Zirkel) · Hammond Castle (CC BY 2.0, R. Linsdell) · Asa Waters Mansion (CC0,
 Daderot) · Commanders Mansion (CC BY-SA 4.0, Magicpiano — 1024px, web-only) ·
 Greylock WORKS (CC BY-SA 4.0, Beyond My Ken — 2K, web/half-page) · Charles River
 Museum (CC BY-SA 4.0, Sdkb) · Cathedral of the Pines (CC BY-SA 4.0, DavidBrooks).
+
+**v0.7.0** — **Venue contact details on every feature page.** `venues.ts` gained
+`contact {website, phone, email?}` (verified from each venue's official site) for
+all 12; the feature sidebar now shows a linked "Visit" block (website + tel:).
+Also ran a second, exhaustive licensed-image hunt for the 5 placeholder venues
+(Wikimedia, Openverse, Flickr-CC, LoC/HABS, NRHP/MACRIS, Picryl, Digital
+Commonwealth): **confirmed genuinely NOTHING commercial-safe exists** for Harding
+Allen, Christalight, Five Bridge Inn, The Hacienda, Monoosnock (Harding Allen's
+only Flickr shots are CC BY-NC — non-commercial, unusable). Two upgrade leads
+found but not applied: Commanders Mansion has a **public-domain HABS set** at
+`loc.gov/item/ma1640/` (20 hi-res photos — LoC Cloudflare-blocks curl, needs a
+real browser to grab); Greylock has a few slightly larger CC exterior angles.
 
 ## Next (not yet done)
 
