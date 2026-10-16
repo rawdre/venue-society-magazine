@@ -41,7 +41,7 @@ export function Logo({
           x="50"
           y="58"
           textAnchor="middle"
-          fontFamily="var(--font-display)"
+          fontFamily="var(--font-bodoni), Didot, Georgia, serif"
           fontSize="40"
           fontWeight="600"
           letterSpacing="1"

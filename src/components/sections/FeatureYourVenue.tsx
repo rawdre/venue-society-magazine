@@ -27,7 +27,7 @@ export function FeatureYourVenue() {
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-[clamp(2.4rem,4.5vw,3.8rem)] font-light leading-[1.04]">
               {ui.forVenues.titlePre}
-              <span className="italic text-gold-soft">
+              <span className="foil-light italic">
                 {ui.forVenues.titleEmph}
               </span>
               {ui.forVenues.titlePost}

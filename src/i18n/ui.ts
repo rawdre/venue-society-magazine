@@ -8,7 +8,7 @@ export const COMEKETO = {
   person: "André",
   phoneDisplay: "(978) 381-1212",
   phoneHref: "tel:+19783811212",
-  email: "tech@comeketocatering.com",
+  email: "team@comeketocatering.com",
   site: "https://www.comeketocatering.com",
   siteLabel: "comeketocatering.com",
 };
@@ -23,6 +23,16 @@ const en = {
     chooseLanguage: "Choose language",
   },
   hero: {
+    vol: "Vol. I",
+    issueNo: "No. 01 · 2026",
+    coverLinesLeft: [
+      { kicker: "The Grand Dame", title: "Mechanics Hall, Worcester" },
+      { kicker: "The Calendar", title: "Twelve rooms to remember" },
+    ],
+    coverLinesRight: [
+      { kicker: "You're Invited", title: "The launch of Issue No. 01" },
+      { kicker: "For Vendors", title: "Where the bookings happen" },
+    ],
     eyebrow: "The Annual · New England Edition",
     coverLine:
       "One celebrated venue, every month — placed in the hands of real buyers.",
@@ -62,10 +72,11 @@ const en = {
     ],
   },
   venuesSection: {
+    photoPending: "Photography forthcoming",
     eyebrow: "The 2026 Calendar",
     title1: "Twelve venues.",
     title2: "Twelve covers.",
-    sub: "A year of New England's most memorable rooms — each given the feature it deserves. (Photography and histories in progress.)",
+    sub: "A year of New England's most memorable rooms — each given the feature it deserves.",
     readFeature: "Read the feature →",
   },
   forVenues: {
@@ -226,6 +237,16 @@ const pt: UI = {
     chooseLanguage: "Escolher idioma",
   },
   hero: {
+    vol: "Vol. I",
+    issueNo: "Nº 01 · 2026",
+    coverLinesLeft: [
+      { kicker: "A Grande Dama", title: "Mechanics Hall, Worcester" },
+      { kicker: "O Calendário", title: "Doze salões inesquecíveis" },
+    ],
+    coverLinesRight: [
+      { kicker: "Você está convidado", title: "O lançamento da Edição Nº 01" },
+      { kicker: "Para Fornecedores", title: "Onde as reservas acontecem" },
+    ],
     eyebrow: "A Edição Anual · Nova Inglaterra",
     coverLine:
       "Um local celebrado a cada mês — nas mãos de quem realmente decide.",
@@ -265,10 +286,11 @@ const pt: UI = {
     ],
   },
   venuesSection: {
+    photoPending: "Fotografia em breve",
     eyebrow: "O Calendário 2026",
     title1: "Doze locais.",
     title2: "Doze capas.",
-    sub: "Um ano com os salões mais memoráveis da Nova Inglaterra — cada um com a matéria que merece. (Fotos e histórias em produção.)",
+    sub: "Um ano com os salões mais memoráveis da Nova Inglaterra — cada um com a matéria que merece.",
     readFeature: "Ver a matéria →",
   },
   forVenues: {
@@ -427,6 +449,16 @@ const es: UI = {
     chooseLanguage: "Elegir idioma",
   },
   hero: {
+    vol: "Vol. I",
+    issueNo: "N.º 01 · 2026",
+    coverLinesLeft: [
+      { kicker: "La Gran Dama", title: "Mechanics Hall, Worcester" },
+      { kicker: "El Calendario", title: "Doce salones inolvidables" },
+    ],
+    coverLinesRight: [
+      { kicker: "Está invitado", title: "El lanzamiento de la Edición N.º 01" },
+      { kicker: "Para Proveedores", title: "Donde se hacen las reservas" },
+    ],
     eyebrow: "La Edición Anual · Nueva Inglaterra",
     coverLine:
       "Un lugar celebrado cada mes — en manos de quien de verdad decide.",
@@ -466,10 +498,11 @@ const es: UI = {
     ],
   },
   venuesSection: {
+    photoPending: "Fotografía próximamente",
     eyebrow: "El Calendario 2026",
     title1: "Doce lugares.",
     title2: "Doce portadas.",
-    sub: "Un año con los salones más memorables de Nueva Inglaterra — cada uno con el reportaje que merece. (Fotografía e historias en proceso.)",
+    sub: "Un año con los salones más memorables de Nueva Inglaterra — cada uno con el reportaje que merece.",
     readFeature: "Ver el reportaje →",
   },
   forVenues: {

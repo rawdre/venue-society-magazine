@@ -33,7 +33,6 @@ export function VenueArticle({
       <header className="relative">
         <Plate
           seed={seed}
-          kicker={`${localizeMonth(venue.month, locale)} · ${v.issue}`}
           ratio="21 / 9"
           rounded="rounded-none"
           className="min-h-[60vh] w-full"
@@ -46,6 +45,8 @@ export function VenueArticle({
         <div className="pointer-events-none absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-6xl px-6 pb-12 lg:px-10 lg:pb-16">
             <p className="text-[0.62rem] uppercase tracking-[0.4em] text-ivory/90">
+              {localizeMonth(venue.month, locale)} · {v.issue}
+              <span className="mx-3 text-gold-soft">✦</span>
               {v.kicker}
             </p>
             <h1 className="font-display mt-3 text-[clamp(2.6rem,7vw,6rem)] font-light leading-[0.95] text-ivory drop-shadow">
@@ -66,7 +67,7 @@ export function VenueArticle({
               <p className="eyebrow">{ui.feature.theFeature}</p>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="font-display mt-6 text-[clamp(1.7rem,2.6vw,2.4rem)] font-light leading-snug text-ink">
+              <p className="font-serif mt-6 text-[clamp(1.8rem,2.8vw,2.6rem)] leading-snug text-ink italic">
                 {v.blurb}
               </p>
             </Reveal>
@@ -86,25 +87,6 @@ export function VenueArticle({
               ))}
             </div>
 
-            <p className="mt-8 text-xs uppercase tracking-[0.22em] text-gold/80">
-              {ui.feature.draftNote}
-            </p>
-
-            <Reveal delay={0.2}>
-              <div className="mt-14">
-                <p className="eyebrow">{ui.feature.pastCelebrations}</p>
-                <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                  {[0, 1, 2].map((g) => (
-                    <Plate
-                      key={g}
-                      seed={seed + g + 1}
-                      ratio="1 / 1"
-                      rounded="rounded-[2px]"
-                    />
-                  ))}
-                </div>
-              </div>
-            </Reveal>
           </article>
 
           <aside className="lg:col-span-4">

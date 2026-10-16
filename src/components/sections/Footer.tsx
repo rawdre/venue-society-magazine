@@ -34,14 +34,14 @@ export function Footer() {
             <Reveal delay={0.1}>
               <h2 className="font-display mt-6 text-[clamp(2.4rem,5vw,4rem)] font-light leading-[1.02]">
                 {ui.footer.titlePre}
-                <span className="italic text-gold-soft">
+                <span className="foil-light italic">
                   {ui.footer.titleEmph}
                 </span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="mt-10 flex flex-wrap items-center gap-6">
-                <Button href="mailto:hello@venuesociety.com" variant="light">
+                <Button href={`mailto:${COMEKETO.email}`} variant="light">
                   {ui.footer.cta}
                 </Button>
                 <Link
@@ -63,7 +63,11 @@ export function Footer() {
                   <dt className="text-[0.62rem] uppercase tracking-[0.26em] text-gold-soft">
                     {ui.footer.enquiriesLabel}
                   </dt>
-                  <dd className="mt-2 text-ivory/85">hello@venuesociety.com</dd>
+                  <dd className="mt-2 text-ivory/85">
+                    <a href={`mailto:${COMEKETO.email}`} className="transition-colors hover:text-gold-soft">
+                      {COMEKETO.email}
+                    </a>
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-[0.62rem] uppercase tracking-[0.26em] text-gold-soft">

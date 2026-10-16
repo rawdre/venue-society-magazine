@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-15 · v0.7.0_
+_Last updated: 2026-10-16 · v0.8.0 (branch `glam-pass`, awaiting André's OK)_
 
 ## What this is
 
@@ -100,6 +100,29 @@ found but not applied: Commanders Mansion has a **public-domain HABS set** at
 `loc.gov/item/ma1640/` (20 hi-res photos — LoC Cloudflare-blocks curl, needs a
 real browser to grab); Greylock has a few slightly larger CC exterior angles.
 
+**v0.8.0 — Glam pass (MacBook, branch `glam-pass`).**
+- **Font bug fixed:** every headline was rendering in the system font (live too).
+  `@theme inline` vars aren't emitted at runtime, so `.font-display { var(--font-display) }`
+  and `body { var(--font-sans) }` resolved to nothing. Custom CSS now uses the next/font
+  vars directly. Base rules moved into `@layer base` — unlayered `* { border-color }` was
+  overriding every `border-*` utility (why the light buttons on dark looked borderless).
+- **Type:** Bodoni Moda (Didone, Google Fonts) for display; Cormorant Garamond for cover
+  lines + blurbs (`font-serif`); Jost for labels.
+- **Gold foil** (`.foil` / `.foil-light`, animated sweep, reduced-motion safe) on every
+  italic accent word. Descender/overhang padding so `y`/`S` don't clip.
+- **Hero = printed cover:** Vol. I / edition / No. 01 folio rule, cover lines either side of
+  the masthead (xl+), ✦ ornament. Cover lines in EN/PT/ES (`hero.coverLines*`).
+- **Placeholders → "covers in waiting":** gilt double frame, sheen, monogram, venue name,
+  "Photography forthcoming". Sage/dusty-blue duotones swapped for bronze/mauve.
+- **Venue page:** issue label moved out from under the nav; public "Draft feature" note and
+  the 3 empty "Past celebrations" boxes removed (bring back when real photos exist).
+- **Contact form is live:** posts to Command Center `POST /public/magazine-lead` (CC v1.65.0)
+  → Close lead + note + email to team@comeketocatering.com + Slack. Honeypot, one
+  request_id per enquiry (retries never duplicate). Stub `/api/contact` deleted.
+- **Email:** team@comeketocatering.com everywhere (hello@venuesociety.com and tech@ removed).
+- **Share preview + icons:** `app/opengraph-image.png` (1200×630 cover), `icon.png`,
+  `apple-icon.png` (gold VS monogram). Lint clean (LanguageProvider → useSyncExternalStore).
+
 ## Next (not yet done)
 
 1. **Imagery — 5 venues still need photos (permission required):** Harding Allen
@@ -112,8 +135,7 @@ real browser to grab); Greylock has a few slightly larger CC exterior angles.
    email for premium assets. Full source table + per-venue contacts captured
    2026-10-15.
 2. **Real venue stories + histories + past-event photos** (story copy is DRAFT).
-3. **Wire the contact form delivery** — `/api/contact` is a stub; connect to email
-   (Resend/SMTP), a Google Sheet, or Close CRM.
+3. ~~Wire the contact form~~ — done in v0.8.0 (Command Center → Close + team@).
 4. **Hosting decision** (Next.js on Vercel vs static on Render) + connect the
    domain Andre already owns.
 5. Logo: refine the VS monogram vs the real brand mark from Instagram.

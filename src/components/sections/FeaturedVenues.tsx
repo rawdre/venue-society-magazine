@@ -25,7 +25,7 @@ export function FeaturedVenues() {
             <h2 className="font-display mt-6 text-[clamp(2.4rem,5vw,4rem)] font-light leading-[1.02] text-ink">
               {ui.venuesSection.title1}
               <br />
-              <span className="italic text-gold">
+              <span className="foil italic">
                 {ui.venuesSection.title2}
               </span>
             </h2>
@@ -57,6 +57,7 @@ export function FeaturedVenues() {
                             : undefined
                         }
                         credit={v.credit}
+                        pendingLabel={ui.venuesSection.photoPending}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>

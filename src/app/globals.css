@@ -2,7 +2,10 @@
 
 /* ----------------------------------------------------------------------------
    VENUE SOCIETY — Light airy editorial theme
-   Ivory grounds · antique gold + blush accents · Cormorant display type
+   Ivory grounds · antique gold + blush accents
+   Type: Bodoni Moda (Didone display, the fashion-magazine face) ·
+         Cormorant Garamond (soft serif for cover lines + long reads) ·
+         Jost (small caps labels). All three via Google Fonts / next/font.
 ---------------------------------------------------------------------------- */
 
 @theme inline {
@@ -19,8 +22,10 @@
   --color-espresso: #2f2922;
   --color-line: rgba(43, 38, 33, 0.14);
 
-  /* Fonts (wired by next/font in layout.tsx) */
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  /* Fonts (wired by next/font in layout.tsx). `inline` theme vars are not
+     emitted at runtime, so custom CSS below must use the next/font vars. */
+  --font-display: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -29,20 +34,24 @@
   --foreground: var(--color-ink);
 }
 
-* {
-  border-color: var(--color-line);
-}
+/* Base rules live in the base layer so Tailwind utilities (border-gold,
+   border-ivory/60…) can override them. Unlayered, they beat every utility. */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  background: var(--color-ivory);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 /* Subtle paper grain for the glossy-print feeling */
@@ -58,7 +67,69 @@ body {
 
 /* Display helpers */
 .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-bodoni), "Didot", "Bodoni 72", Georgia, serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.018em;
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+}
+
+/* Gold foil — a slow metallic sweep across the letters, like a foil-stamped
+   cover. `foil-light` is the brighter leaf for dark grounds. */
+.foil,
+.foil-light {
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* background-clip:text paints only inside the box, so give italic overhang
+     and descenders (the y in Society) room; the negative margin keeps blocks
+     from shifting (inline padding never affects layout). */
+  padding: 0 0.08em 0.18em 0.06em;
+  margin: 0 0 -0.18em -0.06em;
+  animation: foil-sweep 9s linear infinite;
+}
+
+.foil {
+  background-image: linear-gradient(
+    100deg,
+    #7d5f2e 0%,
+    #b8914f 16%,
+    #e9d39c 30%,
+    #a7803f 44%,
+    #d9bb7a 58%,
+    #8e6d36 74%,
+    #c9a45f 88%,
+    #7d5f2e 100%
+  );
+}
+
+.foil-light {
+  background-image: linear-gradient(
+    100deg,
+    #c9ae7e 0%,
+    #f6e7bf 18%,
+    #fff8e6 30%,
+    #d4b47a 46%,
+    #f1dcaa 62%,
+    #b8955a 78%,
+    #c9ae7e 100%
+  );
+}
+
+@keyframes foil-sweep {
+  to {
+    background-position: -220% center;
+  }
+}
+
+/* Double gold rule — the classic cover border */
+.gilt-frame {
+  box-shadow: inset 0 0 0 1px rgba(201, 174, 126, 0.75),
+    inset 0 0 0 5px transparent, inset 0 0 0 6px rgba(201, 174, 126, 0.45);
 }
 
 .eyebrow {
@@ -90,5 +161,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .foil,
+  .foil-light {
+    animation: none;
   }
 }

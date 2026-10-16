@@ -38,31 +38,47 @@ export function Hero() {
         }}
       />
 
-      {/* masthead */}
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6 pt-32 pb-24 text-center lg:px-10">
-        {/* meta rule */}
-        <div className="flex w-full max-w-2xl items-center gap-5 text-ink/60">
+      {/* masthead — laid out like a printed cover */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-6 pt-32 pb-20 text-center lg:px-10">
+        {/* folio rule: volume · edition · issue */}
+        <div className="flex w-full max-w-4xl items-center gap-4 text-ink/60">
+          <span className="hidden text-[0.6rem] uppercase tracking-[0.34em] whitespace-nowrap sm:inline">
+            {ui.hero.vol}
+          </span>
           <span className="h-px flex-1 bg-ink/20" />
           <span className="text-[0.6rem] uppercase tracking-[0.34em] whitespace-nowrap">
             {ui.hero.eyebrow}
           </span>
           <span className="h-px flex-1 bg-ink/20" />
+          <span className="hidden text-[0.6rem] uppercase tracking-[0.34em] whitespace-nowrap sm:inline">
+            {ui.hero.issueNo}
+          </span>
         </div>
 
-        {/* title */}
-        <h1 className="font-display mt-10 text-[clamp(4rem,15vw,11rem)] font-light leading-[0.82] text-ink">
-          Venue
-          <br />
-          <span className="italic text-gold">Society</span>
-        </h1>
+        <div className="relative mt-8 w-full">
+          {/* cover lines, either side of the title (desktop) */}
+          <CoverLines lines={ui.hero.coverLinesLeft} side="left" />
+          <CoverLines lines={ui.hero.coverLinesRight} side="right" />
 
-        <p className="font-display mt-8 max-w-lg text-xl leading-relaxed text-ink/80 italic">
+          <h1 className="font-display text-[clamp(4.2rem,15vw,11.5rem)] leading-[0.86] text-ink">
+            <span className="block tracking-[-0.02em]">Venue</span>
+            <span className="foil block italic">Society</span>
+          </h1>
+        </div>
+
+        <div className="mt-8 flex items-center gap-4 text-gold">
+          <span className="h-px w-10 bg-gold/50" />
+          <span className="text-xs">✦</span>
+          <span className="h-px w-10 bg-gold/50" />
+        </div>
+
+        <p className="font-serif mt-6 max-w-lg text-[1.35rem] leading-relaxed text-ink/80 italic">
           {ui.hero.coverLine}
         </p>
 
         {/* cover line */}
-        <p className="mt-9 text-[0.62rem] uppercase tracking-[0.34em] text-ink/55">
-          No. 01 — Mechanics Hall · Worcester
+        <p className="mt-7 text-[0.62rem] uppercase tracking-[0.34em] text-ink/55">
+          {ui.hero.issueNo} — Mechanics Hall · Worcester
         </p>
 
         {/* CTAs */}
@@ -87,5 +103,34 @@ export function Hero() {
         </a>
       </div>
     </section>
+  );
+}
+
+function CoverLines({
+  lines,
+  side,
+}: {
+  lines: { kicker: string; title: string }[];
+  side: "left" | "right";
+}) {
+  return (
+    <div
+      className={
+        "pointer-events-none absolute top-1/2 hidden w-64 -translate-y-1/2 flex-col gap-10 xl:flex " +
+        (side === "left" ? "left-0 text-left" : "right-0 text-right")
+      }
+      aria-hidden
+    >
+      {lines.map((l) => (
+        <div key={l.title}>
+          <p className="text-[0.58rem] font-medium uppercase tracking-[0.32em] text-gold">
+            {l.kicker}
+          </p>
+          <p className="font-display mt-2 text-[1.35rem] leading-[1.15] text-ink/85 italic">
+            {l.title}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }

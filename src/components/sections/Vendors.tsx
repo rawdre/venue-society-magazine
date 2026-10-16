@@ -35,7 +35,7 @@ export function Vendors() {
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-[clamp(2.4rem,5vw,4rem)] font-light leading-[1.02] text-ink">
               {ui.vendors.titlePre}
-              <span className="italic text-gold">{ui.vendors.titleEmph}</span>
+              <span className="foil italic">{ui.vendors.titleEmph}</span>
               {ui.vendors.titlePost}
             </h2>
           </Reveal>

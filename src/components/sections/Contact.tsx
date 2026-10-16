@@ -1,9 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { cn } from "@/lib/cn";
 import { Overline } from "@/components/Overline";
 import { useUI } from "@/i18n/ui";
+import { useLocale } from "@/i18n/LanguageProvider";
+
+// Enquiries land in the Comeketo Command Center: a Close lead + note, an email
+// to team@comeketocatering.com and a Slack ping (see magazine-intake.js there).
+const INTAKE_URL =
+  process.env.NEXT_PUBLIC_INTAKE_URL ??
+  "https://comeketo-command-center.onrender.com/public/magazine-lead";
 
 type Intent = "feature" | "advertise" | "rsvp";
 
@@ -11,11 +18,15 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function Contact() {
   const ui = useUI();
+  const { locale } = useLocale();
   const [intent, setIntent] = useState<Intent>("feature");
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">(
     "idle"
   );
   const [error, setError] = useState("");
+  // One id per enquiry: a retry after a network error reuses it, so the
+  // Command Center never creates a second lead for the same submission.
+  const requestId = useRef("");
 
   const intents: { key: Intent; label: string; blurb: string }[] = [
     { key: "feature", ...ui.contact.intents.feature },
@@ -27,6 +38,10 @@ export function Contact() {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const payload = {
+      source: "venue-society",
+      request_id: (requestId.current ||= crypto.randomUUID()),
+      language: locale,
+      website: String(form.get("website") ?? ""),
       intent,
       name: String(form.get("name") ?? ""),
       email: String(form.get("email") ?? ""),
@@ -46,12 +61,13 @@ export function Contact() {
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(INTAKE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error();
+      requestId.current = "";
       setStatus("done");
     } catch {
       setError(ui.contact.errors.failed);
@@ -76,7 +92,7 @@ export function Contact() {
           </Overline>
           <h2 className="font-display mt-6 text-[clamp(2.2rem,4.6vw,3.6rem)] font-light leading-[1.04] text-ink">
             {ui.contact.titlePre}
-            <span className="italic text-gold">{ui.contact.titleEmph}</span>
+            <span className="foil italic">{ui.contact.titleEmph}</span>
             {ui.contact.titlePost}
           </h2>
           <p className="mx-auto mt-5 max-w-md text-ink-soft">{active.blurb}</p>
@@ -120,8 +136,17 @@ export function Contact() {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="mx-auto mt-10 max-w-xl rounded-[3px] border border-line bg-ivory p-8 shadow-editorial lg:p-10"
+            className="relative mx-auto mt-10 max-w-xl rounded-[3px] border border-line bg-ivory p-8 shadow-editorial lg:p-10"
           >
+            {/* honeypot: hidden from people, irresistible to bots */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+              className="absolute -left-[9999px] h-px w-px opacity-0"
+            />
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <Field name="name" label={ui.contact.fields.name} required />
               <Field

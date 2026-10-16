@@ -53,7 +53,7 @@ export function Launch() {
               </p>
               <p className="font-display mt-3 text-2xl leading-snug text-ink">
                 {ui.launch.prizePre}
-                <span className="italic text-gold">{ui.launch.prizeEmph}</span>
+                <span className="foil italic">{ui.launch.prizeEmph}</span>
                 {ui.launch.prizePost}
               </p>
               <p className="mt-3 text-xs text-ink-soft">{ui.launch.prizeFine}</p>
