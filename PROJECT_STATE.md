@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-16 · v0.10.0 (branch `glam-pass`, awaiting André's OK)_
+_Last updated: 2026-10-16 · v0.10.1 (branch `glam-pass`, awaiting André's OK)_
 
 ## What this is
 
@@ -147,6 +147,10 @@ bar, contact wax seal, podcast badge, tab icon, apple icon, share image. Standal
 `public/brand/` (`node scripts/brand-svg.mjs`); transparent PNG exports on André's Desktop
 (Venue-Society-Logo/). ⚠️ For print, get the designer's original vector (SVG/PDF/AI) —
 the trace is web-perfect but shows small edge wobbles at poster size.
+
+**v0.10.1 — English first (André's rule).** Every visit opens in English; no browser-language
+auto-detect. A flag choice lasts for the visit (sessionStorage `vs-locale`, across pages) and
+the next visit starts in English again.
 
 ## Next (not yet done)
 

@@ -34,16 +34,18 @@ function isLocale(v: unknown): v is Locale {
   return typeof v === "string" && (LOCALES as readonly string[]).includes(v);
 }
 
+// Every visit opens in English (André's rule). A flag choice lasts for the
+// visit — across pages — via sessionStorage, and the next visit starts in
+// English again. No browser-language auto-detect.
 function readLocale(): Locale {
   if (chosen) return chosen;
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    const stored = window.sessionStorage.getItem(STORAGE_KEY);
     if (isLocale(stored)) return stored;
   } catch {
-    // storage unavailable — fall through to the browser language
+    // storage unavailable — stay on the default
   }
-  const nav = navigator.language.slice(0, 2).toLowerCase();
-  return isLocale(nav) ? nav : DEFAULT_LOCALE;
+  return DEFAULT_LOCALE;
 }
 
 function subscribe(cb: () => void) {
@@ -57,7 +59,7 @@ function subscribe(cb: () => void) {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   // The server snapshot is the default, so SSR and hydration match; the
-  // stored / browser choice applies right after, with no setState-in-effect.
+  // visit's flag choice applies right after, with no setState-in-effect.
   const locale = useSyncExternalStore(subscribe, readLocale, () => DEFAULT_LOCALE);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const setLocale = useCallback((l: Locale) => {
     chosen = l;
     try {
-      window.localStorage.setItem(STORAGE_KEY, l);
+      window.sessionStorage.setItem(STORAGE_KEY, l);
     } catch {
       // keep the in-memory choice only
     }
