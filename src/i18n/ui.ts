@@ -49,6 +49,7 @@ const en = {
     coverAnnual: "The Annual",
   },
   concept: {
+    pullQuote: "It lives on the table, not lost in a feed.",
     eyebrow: "The Idea",
     title: "A magazine that ends up in the hands that matter.",
     lead:
@@ -56,16 +57,19 @@ const en = {
     pillars: [
       {
         no: "01",
+        chapter: "Chapter One",
         title: "Placed, not posted",
         body: "Each issue is handed, in person, to couples and hosts in the middle of planning — and left out at events for every guest to leaf through. It lives on the table, not lost in a feed.",
       },
       {
         no: "02",
+        chapter: "Chapter Two",
         title: "One venue, every month",
         body: "Twelve celebrated venues each earn a four-to-five page feature — their story, their history, and photography that makes a buyer stop and picture their own day there.",
       },
       {
         no: "03",
+        chapter: "Chapter Three",
         title: "The vendors who make it",
         body: "Planners, DJs, florists and photographers advertise beside the venues that already trust them — in front of the exact people booking their next event.",
       },
@@ -263,6 +267,7 @@ const pt: UI = {
     coverAnnual: "A Anual",
   },
   concept: {
+    pullQuote: "Fica na mesa, não se perde num feed.",
     eyebrow: "A Ideia",
     title: "Uma revista que chega às mãos certas.",
     lead:
@@ -270,16 +275,19 @@ const pt: UI = {
     pillars: [
       {
         no: "01",
+        chapter: "Capítulo Um",
         title: "Entregue, não postado",
         body: "Cada edição é entregue, pessoalmente, a casais e anfitriões em pleno planejamento — e fica à disposição nos eventos para cada convidado folhear. Vive sobre a mesa, não perdida num feed.",
       },
       {
         no: "02",
+        chapter: "Capítulo Dois",
         title: "Um local, todo mês",
         body: "Doze locais celebrados ganham uma matéria de quatro a cinco páginas — sua história, seu passado e fotos que fazem o cliente parar e se imaginar ali.",
       },
       {
         no: "03",
+        chapter: "Capítulo Três",
         title: "Os fornecedores que realizam",
         body: "Cerimonialistas, DJs, floristas e fotógrafos anunciam ao lado dos locais que já confiam neles — diante exatamente de quem vai reservar o próximo evento.",
       },
@@ -475,6 +483,7 @@ const es: UI = {
     coverAnnual: "La Anual",
   },
   concept: {
+    pullQuote: "Vive sobre la mesa, no perdida en un feed.",
     eyebrow: "La Idea",
     title: "Una revista que llega a las manos correctas.",
     lead:
@@ -482,16 +491,19 @@ const es: UI = {
     pillars: [
       {
         no: "01",
+        chapter: "Capítulo Uno",
         title: "Entregada, no publicada",
         body: "Cada edición se entrega, en persona, a parejas y anfitriones en plena planificación — y queda disponible en los eventos para que cada invitado la hojee. Vive sobre la mesa, no perdida en un feed.",
       },
       {
         no: "02",
+        chapter: "Capítulo Dos",
         title: "Un lugar, cada mes",
         body: "Doce lugares celebrados reciben un reportaje de cuatro a cinco páginas — su historia, su pasado y fotografías que hacen que el cliente se detenga y se imagine allí.",
       },
       {
         no: "03",
+        chapter: "Capítulo Tres",
         title: "Los proveedores que lo logran",
         body: "Organizadores, DJs, floristas y fotógrafos se anuncian junto a los lugares que ya confían en ellos — frente justo a quienes reservarán su próximo evento.",
       },
