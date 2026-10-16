@@ -3,6 +3,7 @@
 import { Button } from "@/components/Button";
 import { useUI } from "@/i18n/ui";
 import { ShaderField } from "@/components/ui/shader-field";
+import { Monogram } from "@/components/brand/Monogram";
 
 export function Hero() {
   const ui = useUI();
@@ -39,7 +40,10 @@ export function Hero() {
       />
 
       {/* masthead — laid out like a printed cover */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-6 pt-32 pb-20 text-center lg:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-6 pt-28 pb-20 text-center lg:px-10">
+        {/* the house mark, foil-stamped above the folio */}
+        <Monogram height={72} tone="gold" className="mb-7 drop-shadow-[0_6px_14px_rgba(142,109,54,0.25)]" />
+
         {/* folio rule: volume · edition · issue */}
         <div className="flex w-full max-w-4xl items-center gap-4 text-ink/60">
           <span className="hidden text-[0.6rem] uppercase tracking-[0.34em] whitespace-nowrap sm:inline">

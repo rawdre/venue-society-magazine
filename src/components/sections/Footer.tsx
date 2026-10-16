@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
 import { Logo } from "@/components/Logo";
+import { LogoLockup } from "@/components/brand/Monogram";
 import { APP_VERSION } from "@/lib/version";
 import { useUI, COMEKETO } from "@/i18n/ui";
 
@@ -121,10 +122,17 @@ export function Footer() {
         </Reveal>
       </div>
 
+      {/* sign-off: the full logo, foil on espresso */}
+      <div className="relative flex justify-center pb-16">
+        <Reveal>
+          <LogoLockup monogramHeight={120} tone="gold-light" />
+        </Reveal>
+      </div>
+
       {/* bottom bar */}
       <div className="relative border-t border-ivory/12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-6 py-8 text-ivory/60 lg:flex-row lg:px-10">
-          <Logo />
+          <Logo height={34} className="text-gold-soft" />
           <p className="text-[0.62rem] uppercase tracking-[0.24em]">
             © {year} {ui.footer.rights}
           </p>

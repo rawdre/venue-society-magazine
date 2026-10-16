@@ -1,6 +1,6 @@
 # Venue Society — Project State
 
-_Last updated: 2026-10-16 · v0.9.0 (branch `glam-pass`, awaiting André's OK)_
+_Last updated: 2026-10-16 · v0.10.0 (branch `glam-pass`, awaiting André's OK)_
 
 ## What this is
 
@@ -137,6 +137,16 @@ real browser to grab); Greylock has a few slightly larger CC exterior angles.
 - **Contact form** is an invitation card: gilt frame, gold wax-seal monogram, underlined
   serif fields, italic foil tabs, shine-sweep submit.
 - `COMEKETO` contact moved to `lib/contact.ts` (server-safe); Podcast section got `id="podcast"`.
+
+**v0.10.0 — Official logo.** Source was a 210×194 px screenshot, so the mark was rebuilt:
+heavy strokes traced with potrace (`brand/monogram-path.ts`, specks filtered), hairlines
+(serifs, V right arm, S outline, bowl) redrawn by hand in `brand/Monogram.tsx` and
+thickened at small sizes. Wordmark typeset in Bodoni Moda 500 / opsz 18 (`LogoLockup`).
+Placed in: nav (monogram + wordmark), hero emblem (foil), footer sign-off lockup + bottom
+bar, contact wax seal, podcast badge, tab icon, apple icon, share image. Standalone SVGs in
+`public/brand/` (`node scripts/brand-svg.mjs`); transparent PNG exports on André's Desktop
+(Venue-Society-Logo/). ⚠️ For print, get the designer's original vector (SVG/PDF/AI) —
+the trace is web-perfect but shows small edge wobbles at poster size.
 
 ## Next (not yet done)
 

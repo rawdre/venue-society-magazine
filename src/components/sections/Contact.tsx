@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { Overline } from "@/components/Overline";
 import { useUI } from "@/i18n/ui";
 import { useLocale } from "@/i18n/LanguageProvider";
+import { Monogram } from "@/components/brand/Monogram";
 
 // Enquiries land in the Comeketo Command Center: a Close lead + note, an email
 // to team@comeketocatering.com and a Slack ping (see magazine-intake.js there).
@@ -297,9 +298,7 @@ function Seal() {
       aria-hidden
     >
       <div className="absolute inset-[5px] rounded-full border border-[#fff3d6]/50" />
-      <span className="font-display text-[1.45rem] italic text-[#fffaf0] [text-shadow:0_1px_2px_rgba(80,58,24,0.6)]">
-        VS
-      </span>
+      <Monogram height={40} tone="ivory" className="relative drop-shadow-[0_1px_1.5px_rgba(80,58,24,0.65)]" />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { Overline } from "@/components/Overline";
 import { ShaderField } from "@/components/ui/shader-field";
 import { useUI } from "@/i18n/ui";
+import { Monogram } from "@/components/brand/Monogram";
 
 export function Podcast() {
   const ui = useUI();
@@ -30,7 +31,7 @@ export function Podcast() {
                   "linear-gradient(145deg, #e9d8b8 0%, #c9ae7e 50%, #8a6d3f 100%)",
               }}
             >
-              <span className="font-display text-4xl text-ink/80">VS</span>
+              <Monogram height={70} tone="ink" className="opacity-85" />
             </div>
           </Reveal>
           <Reveal delay={0.1}>
